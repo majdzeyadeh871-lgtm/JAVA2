@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+public class Homework2_Majd {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n = 5;
+        int[] numbers = new int[n];
+
+        System.out.println("أدخل 5 أرقام:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = input.nextInt();
+        }
+
+        int[] even = new int[n];
+        int[] odd = new int[n];
+        int[] prime = new int[n];
+
+        int evenCount = 0, oddCount = 0, primeCount = 0;
+
+        for (int num : numbers) {
+            if (num % 2 == 0) {
+                even[evenCount++] = num;
+            } else {
+                odd[oddCount++] = num;
+            }
+            if (isPrime(num)) {
+                prime[primeCount++] = num;
+            }
+        }
+
+        System.out.println("\nالأعداد المدخلة:");
+        printArray(numbers);
+
+        System.out.println("\nالأعداد الزوجية:");
+        printArray(even, evenCount);
+
+        System.out.println("\nالأعداد الفردية:");
+        printArray(odd, oddCount);
+
+        System.out.println("\nالأعداد الأولية:");
+        printArray(prime, primeCount);
+    }
+
+    public static boolean isPrime(int n) {
+        if (n <= 1) return false;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printArray(int[] arr, int size) {
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
