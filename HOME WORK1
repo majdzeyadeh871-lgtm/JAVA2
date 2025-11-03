@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class h_w {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice, limit;
+        int oddSum = 0, evenSum = 0, primeSum = 0;
+        int oddCount = 0, primeCount = 0;
+
+        do {
+            System.out.println("\n1. Sum of odd numbers");
+            System.out.println("2. Sum of even numbers");
+            System.out.println("3. Sum of prime numbers");
+            System.out.println("4. Average of odd and prime numbers");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter limit: ");
+                    limit = sc.nextInt();
+                    oddSum = 0;
+                    oddCount = 0;
+                    for (int i = 1; i <= limit; i++) if (i % 2 != 0) { oddSum += i; oddCount++; }
+                    System.out.println("Odd sum = " + oddSum);
+                    break;
+
+                case 2:
+                    System.out.print("Enter limit: ");
+                    limit = sc.nextInt();
+                    evenSum = 0;
+                    for (int i = 1; i <= limit; i++) if (i % 2 == 0) evenSum += i;
+                    System.out.println("Even sum = " + evenSum);
+                    break;
+
+                case 3:
+                    System.out.print("Enter limit: ");
+                    limit = sc.nextInt();
+                    primeSum = 0;
+                    primeCount = 0;
+                    for (int i = 2; i <= limit; i++) {
+                        boolean prime = true;
+                        for (int j = 2; j <= Math.sqrt(i); j++) if (i % j == 0) prime = false;
+                        if (prime) { primeSum += i; primeCount++; }
+                    }
+                    System.out.println("Prime sum = " + primeSum);
+                    break;
+
+                case 4:
+                    double oddAvg = (oddCount == 0) ? 0 : (double) oddSum / oddCount;
+                    double primeAvg = (primeCount == 0) ? 0 : (double) primeSum / primeCount;
+                    System.out.println("Odd average = " + oddAvg);
+                    System.out.println("Prime average = " + primeAvg);
+                    break;
+
+                case 5:
+                    System.out.println("Program ended.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 5);
+    }
+}
